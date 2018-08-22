@@ -1,0 +1,53 @@
+package develop.api.jwt.mail;
+
+import com.icegreen.greenmail.junit.GreenMailRule;
+import com.icegreen.greenmail.util.ServerSetupTest;
+
+import develop.api.AbstractApplicationTest;
+import develop.api.Application;
+import develop.api.jwt.domain.User;
+import develop.api.jwt.mail.MailBox; 
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.mail.Message;
+import javax.mail.internet.MimeMessage;
+
+import static com.icegreen.greenmail.util.GreenMailUtil.getBody;
+import static java.util.Collections.emptyList;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = Application.class, value = {
+		"spring.data.mongodb.database=local", "spring.profiles.active=prod" })
+public class DefaultMailBoxTest extends AbstractApplicationTest {
+
+	@Autowired
+	private MailBox mailBox;
+
+	@Rule
+	public final GreenMailRule greenMail = new GreenMailRule(ServerSetupTest.ALL);
+
+	@Test
+	public void testMailBox() throws Exception {
+		User user = new User("userName", "test@example.org", "org", emptyList(), "hash");
+		mailBox.sendInvitationMail(user);
+
+		// we send async
+		Thread.sleep(1500);
+
+		MimeMessage mimeMessage = greenMail.getReceivedMessages()[0];
+		String body = getBody(mimeMessage);
+
+		assertTrue(body.contains("http://localhost:8080/invite?key=hash"));
+		assertEquals(user.getEmail(), mimeMessage.getRecipients(Message.RecipientType.TO)[0].toString());
+	}
+
+}
