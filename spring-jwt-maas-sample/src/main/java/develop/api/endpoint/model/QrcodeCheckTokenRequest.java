@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class QrcodeCheckTokenRequest {
-	private String token, serialNumber, deviceID, scanDeviceID, extraInfo, cardId;
+	private String token, serialNumber, deviceID, scanDeviceID,  cardId;
+	
+	private ExtraInfo extraInfo ;
 
 	public String getToken() {
 		return token;
@@ -40,12 +42,13 @@ public class QrcodeCheckTokenRequest {
 	public void setScanDeviceID(String scanDeviceID) {
 		this.scanDeviceID = scanDeviceID;
 	}
+ 
 
-	public String getExtraInfo() {
+	public ExtraInfo getExtraInfo() {
 		return extraInfo;
 	}
 
-	public void setExtraInfo(String extraInfo) {
+	public void setExtraInfo(ExtraInfo extraInfo) {
 		this.extraInfo = extraInfo;
 	}
 

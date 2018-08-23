@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class QrcodeQueryOrderResponse {
-	private String qrcodeType, status, name, type, cardId;
+public class QrcodeQueryOrderResponse  extends ErrorResponse{
+	private String qrcodeType,  name, type, cardId;
 	
 	private Integer orderId,count,total,price,point; 
 	
@@ -21,14 +21,7 @@ public class QrcodeQueryOrderResponse {
 	public void setQrcodeType(String qrcodeType) {
 		this.qrcodeType = qrcodeType;
 	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+ 
 
 	public String getName() {
 		return name;

@@ -6,7 +6,8 @@ import org.springframework.boot.actuate.autoconfigure.TraceWebFilterAutoConfigur
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 
-@SpringBootApplication(exclude = {TraceWebFilterAutoConfiguration.class, MetricFilterAutoConfiguration.class, SecurityAutoConfiguration.class})
+//@SpringBootApplication(exclude = {TraceWebFilterAutoConfiguration.class, MetricFilterAutoConfiguration.class, SecurityAutoConfiguration.class})
+@SpringBootApplication
 public class Application {
 
   public static void main(String[] args) {

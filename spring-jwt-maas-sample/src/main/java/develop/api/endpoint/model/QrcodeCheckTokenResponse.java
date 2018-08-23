@@ -1,14 +1,17 @@
 package develop.api.endpoint.model;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class QrcodeCheckTokenResponse {
+public class QrcodeCheckTokenResponse  extends ErrorResponse{
 	private String qrcodeType, name, type;
 	private Integer orderId, id, count, total, price, point;
+	private Date timestamp;
 	public String getQrcodeType() {
 		return qrcodeType;
 	}
@@ -62,5 +65,12 @@ public class QrcodeCheckTokenResponse {
 	}
 	public void setPoint(Integer point) {
 		this.point = point;
+	}
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	} 
+	
 }

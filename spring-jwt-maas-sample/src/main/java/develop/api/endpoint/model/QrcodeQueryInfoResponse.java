@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class QrcodeQueryInfoResponse {
+public class QrcodeQueryInfoResponse  extends ErrorResponse{
 	private String qrcodeType, name, type, message;
 	private Integer orderId, id, count, total, price, point, status, errCode;
 
