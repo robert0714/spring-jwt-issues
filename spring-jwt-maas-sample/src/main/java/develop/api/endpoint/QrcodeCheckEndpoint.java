@@ -47,6 +47,7 @@ public class QrcodeCheckEndpoint {
 		result.setTotal(50);
 		result.setPrice(40);
 		result.setPoint(10);
+		result.setOrderId(7563);
 		
 		return new ResponseEntity<ErrorResponse>(result, HttpStatus.OK);
 	}
@@ -71,6 +72,7 @@ public class QrcodeCheckEndpoint {
 		result.setTotal(50);
 		result.setPrice(40);
 		result.setPoint(10);
+		result.setOrderId(7563);
 		result.setTimestamp(new Date());
 		return new ResponseEntity<ErrorResponse>(result, HttpStatus.OK);
 	}
