@@ -2,6 +2,7 @@ package develop.api.endpoint.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,7 +12,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class QrcodeCheckTokenResponse  extends ErrorResponse{
 	private String qrcodeType, name, type;
 	private Integer orderId, id, count, total, price, point;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
 	private Date timestamp;
+	
 	public String getQrcodeType() {
 		return qrcodeType;
 	}
